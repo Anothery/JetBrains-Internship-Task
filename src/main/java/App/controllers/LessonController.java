@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
-
 import java.util.concurrent.ExecutionException;
 
 
@@ -20,10 +19,10 @@ public class LessonController {
     private TaskExecutor taskExecutor;
     
     @RequestMapping(value = "/api")
-    public DeferredResult<ResponseEntity> router(@RequestParam(value="lesson") String id)throws JsonProcessingException,
-                                                                                                ExecutionException {
+    public DeferredResult<ResponseEntity> router(@RequestParam(value="lesson") String id)
+            throws JsonProcessingException, ExecutionException {
         DeferredResult<ResponseEntity> result = new DeferredResult<>();
-        new Thread(new FrontEnd(result, id)).start();
+        taskExecutor.execute(new FrontEnd(result, id));
         return result;
     }
 }

@@ -18,7 +18,7 @@ public class Application {
 
     private static final int CORE_POOL_SIZE = 150;
     private static final int MAX_POOL_SIZE = 150;
-    private static final int QUEUE_CAPACITY = 50;
+    private static final int QUEUE_CAPACITY = 300;
 
     @Bean(name = "taskExecutor")
     public TaskExecutor getExecutor(){
